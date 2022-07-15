@@ -11,21 +11,30 @@
         <div class="container">
             <div class="card border-dark mb-3" style="max-width: 18rem;" th:each="pedido : ${pedidos}">
                 <div class="card-header" th:text="${pedido.nomeProduto}"> Nome do produto</div>
-                <div class="card-text"> Valor: <span th:text="${pedido.valorNegociado}"> 200,99</span></div>
-                <div class="card-text"> Data da entrega: <span th:text="${pedido.dataDaEntrega}">10/02/2020</span> </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-8 mb-3">
+                            <div class="row">
+                                <div class="col-md-5"> Valor: <span th:text="${pedido.valorNegociado}"> 200,99</span></div>
+                                <div class="col-md-7"> Data da entrega: <span th:text="${pedido.dataDaEntrega}">10/02/2020</span> </div>
+                            </div>
+                            <div>Produto</div>
+                            <div href="#" class="card-link"><input class="form-control" th:value="${pedido.urlProduto}" value="url do produto"/> </div>
 
-                <div>Produto</div>
-                <div href="#" class="card-link"><input class="form-control" th:value="${pedido.urlProduto}" value="url do produto"/> </div>
 
+                            <div class="card-text">Descrição</div>
+                            <div href="#" class="card-link">
+                                <textarea class="form-control" th:text="${pedido.descricao}"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                            <div>
+                             <img class="img-thumbnail" th:src="${pedido.urlImagem}" src=""/>
+                            </div>
+                        </div>
 
-                <div class="card-text">Descrição</div>
-                <div href="#" class="card-link">
-                    <textarea class="form-control" th:text="${pedido.descricao}"></textarea>
-                 </div>
-
-                <div>
-                    <img class="card-img-top" th:src="${pedido.urlImagem}" src=""/>
-                 </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
