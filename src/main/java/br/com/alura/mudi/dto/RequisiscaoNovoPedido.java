@@ -1,6 +1,7 @@
 package br.com.alura.mudi.dto;
 
 import br.com.alura.mudi.model.Pedido;
+import br.com.alura.mudi.model.StatusPedido;
 
 import javax.validation.constraints.NotBlank;
 
@@ -56,6 +57,7 @@ public class RequisiscaoNovoPedido {
         pedido.setUrlProduto(urlProduto);
         pedido.setUrlImagem(urlImagem);
         pedido.setDescricao(descricao);
+        pedido.setStatus(StatusPedido.AGUARDANDO);
         return pedido;
     }
 }
