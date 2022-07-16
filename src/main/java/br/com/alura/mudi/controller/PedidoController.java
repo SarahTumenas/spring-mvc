@@ -21,7 +21,7 @@ public class PedidoController {
     private PedidoRepository pedidoRepository;
 
     @GetMapping("formulario")
-    public String formulario() {
+    public String formulario(RequisiscaoNovoPedido requesicao) {
         return "pedido/formulario";
 
     }

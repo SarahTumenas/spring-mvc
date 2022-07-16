@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 public class RequisiscaoNovoPedido {
 
-    @NotBlank
+    @NotBlank //NotBlank é um validador de campo obrigatório, NotBlank.requisicaoNovoPedido.nomeProduto=campo não pode estar em branco
     private String nomeProduto;
 
     @NotBlank

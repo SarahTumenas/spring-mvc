@@ -16,22 +16,31 @@
             <form th:object="${requisiscaoNovoPedido}" class="card-body" action="/pedido/novo" method="POST">
                 <div class="form-group">
                     <label for="nomeProduto">Produto</label>
-                    <input th:field="*{nomeProduto}" class="form-control"  placeholder="nome do produto"/>
+                    <input th:field="*{nomeProduto}" th:errorclass="is-invalid" class="form-control"  placeholder="nome do produto"/>
                     <small>Informa qual o nome do produto</small>
+                    <div th:erros="*{nomeProduto}" class="invalid-feedback">
+                        Campo não pode estar em branco
+                    </div>
                 </div>
                 <div class="form-group">
                      <label for="urlProduto">Url</label>
-                    <input th:field="*{urlProduto}" class="form-control"  placeholder="url do produto"/>
+                    <input th:field="*{urlProduto}"  th:errorclass="is-invalid" class="form-control "  placeholder="url do produto"/>
                     <small>Procure em um site o produto que você deseja e cole a url da página aqui</small>
+                    <div th:erros="*{urlProduto}" class="invalid-feedback">
+                        campo não pode estar em branco
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="urlImagem">Imagem</label>
-                    <input th:field="*{urlImagem}" class="form-control"  placeholder="url da imagem"/>
+                    <input th:field="*{urlImagem}"  th:errorclass="is-invalid" class="form-control "  placeholder="url da imagem"/>
                     <small>Copie a url de uma boa imagem do produto e cole aqui para ajudar a conseguir compradores</small>
+                    <div th:erros="*{urlImagem}" class="invalid-feedback">
+                        campo não pode estar em branco
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="descricao">Descrição</label>
-                    <textarea class="form-control" name="descricao" placeholder="Adicione detalhes importantes para ajudar o comprador."></textarea>
+                    <textarea th:field="*{descricao}" class="form-control"  placeholder="Adicione detalhes importantes para ajudar o comprador."></textarea>
                 </div>
                 <button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
             </form>
