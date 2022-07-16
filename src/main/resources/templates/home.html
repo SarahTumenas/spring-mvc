@@ -5,49 +5,73 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
-        <title>Document</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+        <style>
+            .logo-container {
+                background-color: #b7d5ac;
+                color: #fff;
+
+            }
+
+            .logo {
+            font-wheight: bold;
+            font-family: 'Handlee', cursive;
+            font-size: 3.5 rem;
+            }
+
+
+        </style>
     </head>
     <body>
-        <div class="jumbotron mb-0 bg-success p-2 text-dark bg-opacity-10">
-        <h1 class="display-4">Meus Pedidos</h1>
+
+        <div class="logo-container mb-3 p-3 d-flex justify-content-between mb-3">
+            <span class="logo">Mudi</span>
+            <span class="mt-3">login</span>
+
         </div>
+        <div class="conatiner">
+            <div class="jumbotron mb-0 bg-success p-2 text-dark bg-opacity-10">
+            <h1 class="display-4">Meus Pedidos</h1>
+            </div>
 
-        <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
-             <div class="navbar-nav">
-                 <a class="nav-item nav-link active" href="">Todos</a>
-                 <a class="nav-item nav-link" href="">Aguardando</a>
-                <a class="nav-item nav-link" href="">Aprovado</a>
-                <a class="nav-item nav-link" href="">Entregue</a>
-             </div>
-            <a href="/pedido/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>
-        </nav>
+            <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between mb-3">
+                 <div class="navbar-nav">
+                     <a class="nav-item nav-link active" href="">Todos</a>
+                     <a class="nav-item nav-link" href="">Aguardando</a>
+                    <a class="nav-item nav-link" href="">Aprovado</a>
+                    <a class="nav-item nav-link" href="">Entregue</a>
+                 </div>
+                <a href="/pedido/formulario"><button class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>
+            </nav>
 
-        <div class="card border-dark mb-3" style="max-width: 18rem;" th:each="pedido : ${pedidos}">
-            <div class="card-header" th:text="${pedido.nomeProduto}"> Nome do produto</div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-12 col-sm-8 mb-3">
-                        <div class="row">
-                            <div class="col-md-5"> Valor: <span th:text="${pedido.valorNegociado}"> 200,99</span></div>
-                            <div class="col-md-7"> Data da entrega: <span th:text="${pedido.dataDaEntrega}">10/02/2020</span> </div>
+            <div class="card border-dark mb-3" style="max-width: 18rem;" th:each="pedido : ${pedidos}">
+                <div class="card-header" th:text="${pedido.nomeProduto}"> Nome do produto</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-8 mb-3">
+                            <div class="row ">
+                                <div class="col-md-5"> Valor: <span th:text="${pedido.valorNegociado}"> 200,99</span></div>
+                                <div class="col-md-7"> Data da entrega: <span th:text="${pedido.dataDaEntrega}">10/02/2020</span> </div>
+                            </div>
+                            <div>Produto</div>
+                            <div href="#" class="card-link"><input class="form-control" th:value="${pedido.urlProduto}" value="url do produto"/> </div>
+                            <div class="card-text">Descrição</div>
+                            <div href="#" class="card-link">
+                                <textarea class="form-control" th:text="${pedido.descricao}"></textarea>
+                            </div>
                         </div>
-                        <div>Produto</div>
-                        <div href="#" class="card-link"><input class="form-control" th:value="${pedido.urlProduto}" value="url do produto"/> </div>
-                        <div class="card-text">Descrição</div>
-                        <div href="#" class="card-link">
-                            <textarea class="form-control" th:text="${pedido.descricao}"></textarea>
+                        <div class="col-12 col-sm-4">
+                            <div>
+                                <img class="img-thumbnail" th:src="${pedido.urlImagem}" src=""/>
+                            </div>
                         </div>
+
                     </div>
-                    <div class="col-12 col-sm-4">
-                        <div>
-                            <img class="img-thumbnail" th:src="${pedido.urlImagem}" src=""/>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
-
     </body>
 </html>
 
