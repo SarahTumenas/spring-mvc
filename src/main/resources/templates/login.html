@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head th:replace="~{base :: head}"></head>
     <body>
 
@@ -7,16 +7,17 @@
         <div class="conatiner">
             <div th:replace="~{base :: titulo('Login')}"></div>
 
-            <div class="card border-dark mb-3 mt-1"  >
+            <div class="card mb-3">
                 <form th:action="@{/login}" class="card-body" method="post">
                     <div class="form-group">
-                        <label for="username">Usuario</label>
-                        <input name="username"  class="form-control"  placeholder="usuario"/>
+                        <label for="username">Usuário</label>
+                        <input name="username"  class="form-control" placeholder="usuário"/>
                     </div>
                     <div class="form-group">
-                        <label for="password">senha</label>
-                        <input type="password" name="password"  class="form-control"  placeholder="senha"/>
+                        <label for="password">Senha</label>
+                        <input type="password" name="password" class="form-control" placeholder="senha"/>
                     </div>
+
                     <button class="btn mt-3" type="submit">Login</button>
                 </form>
 

@@ -1,5 +1,6 @@
 package br.com.alura.mudi;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,19 +19,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .anyRequest()
-                .authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()
-                );
+                )
+                .logout(logout -> logout.logoutUrl("/logout"));
     }
 
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        UserDetails user=
+        UserDetails user =
                 User.withDefaultPasswordEncoder()
                         .username("joao")
                         .password("joao")
@@ -40,4 +41,3 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new InMemoryUserDetailsManager(user);
     }
 }
-
