@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
     <head th:replace="~{base :: head}"></head>
-    <body>
+    <body onload="onLoad()">
 
         <div th:replace="~{base :: logo}"></div>
-        <div class="conatiner">
-            <div th:replace="~{base :: titulo('Últimos Pedidos Entregues')}"></div>
 
-            <div class="card border-dark mb-3"  th:each="pedido : ${pedidos}">
-                <div class="card-header text-bg-info p-3" th:text="${pedido.nomeProduto}"> Nome do produto</div>
+        <div class="conatiner" id="ofertas">
+            <div th:replace="~{base :: titulo('Faça a sua Oferta')}"></div>
+
+            <div class="card mb-3"  v-for="pedido in pedidos">
+                <div class="card-header alert-dark"> {{pedido.nomeProduto}}</div>
 
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-sm-8 mb-3">
                             <div class="row ">
-                                <div class="col-md-5"> Valor: <span th:if="${pedido.valorNegociado} != null" th:text="${'R$ ' + #numbers.formatDecimal(pedido.valorNegociado,3,2,'COMMA')}"> 200,99</span></div>
-                                <div class="col-md-7"> Data da entrega: <span th:text="${#temporals.format(pedido.dataDaEntrega, 'dd/MM/yyyy')}">10/02/2020</span> </div>
+                                <div class="col-md-5"> Valor: <input /> </div>
+                                <div class="col-md-7"> Data da entrega: <input /> </div>
                             </div>
                             <div>Produto</div>
-                            <div href="#" class="card-link"><input class="form-control" th:value="${pedido.urlProduto}" value="url do produto"/> </div>
-                            <div class="card-text">Descrição</div>
-                            <div href="#" class="card-link">
-                                <textarea class="form-control" th:text="${pedido.descricao}"></textarea>
+                            <div>  <a v-bind:href="pedido.urlProduto"> {{pedido.nomeProduto}}</a> </div>
+                            <div>Descrição</div>
+                            <div>
+                                <textarea class="form-control">{{pedido.descricao}}</textarea>
                             </div>
                         </div>
                         <div class="col-12 col-sm-4">
                             <div>
-                                <img class="img-thumbnail" th:src="${pedido.urlImagem}" src=""/>
+                                <img class="img-thumbnail" v-bind::src= "pedido.urlImagem"/>
                             </div>
                         </div>
 
@@ -34,6 +35,38 @@
                 </div>
             </div>
         </div>
+        <script>
+            function onLoad(){
+
+                var app = new Vue({
+                el: '#ofertas',
+                data :{
+                    pedidos: [
+                            {
+                               "id":8,
+                               "nomeProduto":"Controle Ps5",
+                               "valorNegociado":null,
+                               "dataDaEntrega":null,
+                               "urlProduto":"https://www.submarino.com.br/produto/4483346081?pfm_index=2&pfm_page=landingpage&pfm_pos=grid&pfm_type=landingpage_page",
+                               "urlImagem":"https://images-submarino.b2w.io/produtos/01/00/img/4483346/0/4483346099_1SZ.jpg",
+                               "descricao":"Controle Sem Fio Dualsense Starlight Blue - Ps5",
+                               "status":"AGUARDANDO"
+                               },
+                               {
+                               "id":1,
+                               "nomeProduto":"Xiaomi Redmi Note 11",
+                               "valorNegociado":null,"dataDaEntrega":null,
+                               "urlProduto":"https://www.amazon.com.br/Xiaomi-Redmi-Note-11-Graphite/dp/B09QSB4N2C/ref=sr_1_7?keywords=xiaomi&qid=1657832416&sr=8-7&ufe=app_do%3Aamzn1.fos.25548f35-0de7-44b3-b28e-0f56f3f96147",
+                               "urlImagem":"https://m.media-amazon.com/images/I/51e3KdrHuCL._AC_SL1080_.jpg",
+                               "descricao":"Xiaomi Redmi Note 11 - Graphite Gray 6GB Ram 128GB Rom",
+                               "status":"AGUARDANDO"
+                               }
+                          ]
+                    }
+            });
+         }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </body>
 </html>
 
