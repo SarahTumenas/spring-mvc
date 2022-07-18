@@ -1,6 +1,5 @@
 package br.com.alura.mudi.controller;
 
-
 import br.com.alura.mudi.model.Pedido;
 import br.com.alura.mudi.model.StatusPedido;
 import br.com.alura.mudi.repository.PedidoRepository;
@@ -12,43 +11,42 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import java.security.Principal;
 import java.util.List;
 
-
 @Controller
-@RequestMapping("/home")
-public class HomeController {
+@RequestMapping("usuario")
+public class UsuarioController {
 
-       @Autowired
-       private PedidoRepository pedidoRepository;
-       @GetMapping
-       public String home(Model model, Principal pricipal) {
+    @Autowired
+    private PedidoRepository pedidoRepository;
 
-            List<Pedido> pedidos = pedidoRepository.findAll();
+    @GetMapping("pedido")
+    public String home(Model model, Principal pricipal) {
+
+        List<Pedido> pedidos = pedidoRepository.findAllByUsuario(pricipal.getName());
 
 
-            model.addAttribute("pedidos", pedidos);
+        model.addAttribute("pedidos", pedidos);
 
-            return "home";
-        }
+        return "usuario/home";
+    }
 
-    @GetMapping("/{status}")
-    public String porStatus(@PathVariable("status") String status, Model model) {
+    @GetMapping("pedido/{status}")
+    public String porStatus(@PathVariable("status") String status, Model model, Principal principal) {
 
-        List<Pedido> pedidos = pedidoRepository.findByStatus(StatusPedido.valueOf(status.toUpperCase()));
+        List<Pedido> pedidos = pedidoRepository.findByStatusEUsuario(StatusPedido.valueOf(status.toUpperCase()), principal.getName());
 
 
         model.addAttribute("pedidos", pedidos);
         model.addAttribute("status", status);
 
-        return "home";
+        return "usuario/home";
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
     public String onError() {
-        return "redirect:/home";
+        return "redirect:/usuario/home";
     }
 
 }
