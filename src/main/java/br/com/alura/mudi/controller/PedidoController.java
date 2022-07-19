@@ -1,6 +1,6 @@
 package br.com.alura.mudi.controller;
 
-import br.com.alura.mudi.dto.RequisiscaoNovoPedido;
+import br.com.alura.mudi.dto.RequisicaoNovoPedido;
 import br.com.alura.mudi.model.Pedido;
 import br.com.alura.mudi.model.User;
 import br.com.alura.mudi.repository.PedidoRepository;
@@ -28,13 +28,13 @@ public class PedidoController {
 
 
     @GetMapping("formulario")
-    public String formulario(RequisiscaoNovoPedido requesicao) {
+    public String formulario(RequisicaoNovoPedido requesicao) {
         return "pedido/formulario";
 
     }
 
     @PostMapping("novo")
-    public String novo(@Valid RequisiscaoNovoPedido requesicao, BindingResult result) {
+    public String novo(@Valid RequisicaoNovoPedido requesicao, BindingResult result) {
 
         if (result.hasErrors()) {
             return "pedido/formulario";

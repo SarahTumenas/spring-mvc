@@ -5,7 +5,7 @@ import br.com.alura.mudi.model.StatusPedido;
 
 import javax.validation.constraints.NotBlank;
 
-public class RequisiscaoNovoPedido {
+public class RequisicaoNovoPedido {
 
     @NotBlank //NotBlank é um validador de campo obrigatório, NotBlank.requisicaoNovoPedido.nomeProduto=campo não pode estar em branco
     private String nomeProduto;
