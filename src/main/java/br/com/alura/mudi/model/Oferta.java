@@ -7,8 +7,7 @@ import java.time.LocalDate;
 @Entity
 public class Oferta {
 
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private BigDecimal valor;
@@ -17,8 +16,7 @@ public class Oferta {
 
     private String comentario;
 
-
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Pedido pedido;
 
     public Long getId() {
@@ -60,4 +58,6 @@ public class Oferta {
     public void setPedido(Pedido pedido) {
         this.pedido = pedido;
     }
+
+
 }

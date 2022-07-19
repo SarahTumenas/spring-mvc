@@ -13,7 +13,6 @@ public class RequisicaoNovaOferta {
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-
     private Long pedidoId;
 
     @Pattern(regexp = "^\\d+(\\.\\d+{2})?$")
@@ -60,10 +59,10 @@ public class RequisicaoNovaOferta {
 
     public Oferta toOferta() {
         Oferta oferta = new Oferta();
-
-        oferta.setValor(new BigDecimal(this.valor));
-        oferta.setDataDaEntrega(LocalDate.parse(this.dataDaEntrega, formatter));
         oferta.setComentario(this.comentario);
+        oferta.setDataDaEntrega(LocalDate.parse(this.dataDaEntrega, formatter));
+        oferta.setValor(new BigDecimal(this.valor));
         return oferta;
     }
+
 }

@@ -22,22 +22,19 @@ public class OfertasRest {
 
     @PostMapping
     public Oferta criaOferta(@Valid @RequestBody RequisicaoNovaOferta requisicao) {
-
         Optional<Pedido> pedidoBuscado = pedidoRepository.findById(requisicao.getPedidoId());
-        if (!pedidoBuscado.isPresent()) {
-            throw new IllegalArgumentException("Pedido não encontrado");
+        if(!pedidoBuscado.isPresent()) {
+            return null;
         }
+
         Pedido pedido = pedidoBuscado.get();
 
         Oferta nova = requisicao.toOferta();
         nova.setPedido(pedido);
-
         pedido.getOfertas().add(nova);
         pedidoRepository.save(pedido);
 
         return nova;
-
     }
-
 
 }

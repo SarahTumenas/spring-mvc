@@ -16,14 +16,14 @@ import java.util.List;
 @RequestMapping("/api/pedidos")
 public class PedidosRest {
 
-    @Autowired
-    private PedidoRepository pedidoRepository;
+        @Autowired
+        private PedidoRepository pedidoRepository;
 
-    @GetMapping("aguardando")
-    public List<Pedido> getPedidosAguardandoOfertas() {
-        Sort sort = Sort.by("id").descending();
-        PageRequest paginacao = PageRequest.of(0, 10, sort);
+        @GetMapping("aguardando")
+        public List<Pedido> getPedidosAguardandoOfertas() {
+            Sort sort = Sort.by("id").descending();
+            PageRequest paginacao = PageRequest.of(0, 10, sort);
 
-        return pedidoRepository.findByStatus(StatusPedido.AGUARDANDO, paginacao);
-    }
+            return pedidoRepository.findByStatus(StatusPedido.AGUARDANDO, paginacao);
+        }
 }
